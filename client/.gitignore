@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# sveltekit
+/.svelte-kit
+/build
+/vite-env.d.ts
+
+# System files
+.DS_Store
+
+# production
+/out
+
+# local env files
+.env
+.env.*
+!/public/.well-known
+
+# deploy
+/docker
