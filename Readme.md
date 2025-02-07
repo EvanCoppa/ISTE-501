@@ -5,7 +5,6 @@
 Open a new terminal then
 
 ```bash
-
 cd server
 node server.js
 ```
@@ -15,7 +14,7 @@ node server.js
 Open a new terminal then
 
 ```bash 
-npm install
 cd client
+npm install
 npm run dev
 ```
