@@ -6,6 +6,7 @@ Open a new terminal then
 
 ```bash
 cd server
+npm install
 node server.js
 ```
 
