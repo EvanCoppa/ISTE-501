@@ -1,5 +1,9 @@
 # How to Run the program 
 
+## Download Node JS
+
+[Node Download](https://nodejs.org/en/download)
+
 ## Start the server 
 
 Open a new terminal then
