@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^4.0.0"
+  }
+}
