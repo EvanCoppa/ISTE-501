@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/mern-stack-db', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/drivekind', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
