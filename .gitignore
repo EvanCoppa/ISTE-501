@@ -1,25 +1,9 @@
-client/.DS_Store
-client/.svelte-kit/generated/server/internal.js
-node_modules
-
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
-/build
-
-# OS
 .DS_Store
-Thumbs.db
-
-# Env
+node_modules
+/.svelte-kit
+/package
 .env
 .env.*
 !.env.example
-!.env.test
-
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+.vercel
+.output
