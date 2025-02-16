@@ -13,12 +13,7 @@ jobs:
       - name: Checkout Code from GitHub Repository
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ secrets.SERVER_IP }}" >> ~/.ssh/known_hosts
-
+    
       - name: SSH into Server and Pull Latest Changes
         run: |
           ssh -i ~/.ssh/id_rsa -p " "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}" "cd ISTE-501 && git pull origin main"
