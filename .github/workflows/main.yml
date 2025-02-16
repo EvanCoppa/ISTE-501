@@ -3,7 +3,7 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main  # Or your main branch name
+      - main
 
 jobs:
   deploy:
@@ -14,15 +14,28 @@ jobs:
         uses: actions/checkout@v3
 
       - name: SSH and Git Pull
-        uses: appleboy/ghaction-ssh@master
+        uses: actions/github-script@v6
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }} # Or password if absolutely necessary (less secure)
-          port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            cd /path/to/your/repo  # Replace with the actual path
-            git pull origin main  # Or your branch name
-            # Add any other deployment commands here
-            # Example:
-            # sudo systemctl restart your_service_name
+            const SSH_PRIVATE_KEY = '${{ secrets.SSH_PRIVATE_KEY }}';
+            const SERVER_IP = '${{ secrets.SERVER_IP }}';
+            const SERVER_USERNAME = '${{ secrets.SERVER_USERNAME }}';
+            const SERVER_PORT = '${{ secrets.SERVER_PORT || 22 }}'; // Default to 22 if not set
+
+            // Create a temporary SSH key file
+            const fs = require('fs');
+            fs.writeFileSync('id_rsa', SSH_PRIVATE_KEY + '\n');
+            fs.chmodSync('id_rsa', '600'); // Set correct permissions
+
+            // SSH and Git Pull
+            try {
+              await exec.exec('ssh', [
+                '-p', SERVER_PORT,
+                '-i', 'id_rsa',
+                `${SERVER_USERNAME}@${SERVER_IP}`,
+                `cd /path/to/your/repo && git pull origin main`, // Replace with your path and branch
+              ]);
+            } finally {
+              fs.unlinkSync('id_rsa'); // Clean up the temporary key file
+            }
+         
