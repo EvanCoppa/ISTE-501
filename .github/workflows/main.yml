@@ -23,5 +23,5 @@ jobs:
           port: 22  # Default SSH port
           script: |
             # Command to run on the server
-            echo "Hello from GitHub Action!"
+            ls
             # You can replace the line above with any command you'd like to run
