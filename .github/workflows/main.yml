@@ -21,7 +21,7 @@ jobs:
 
       - name: SSH into Server and Pull Latest Changes
         run: |
-          ssh -i ~/.ssh/id_rsa -p "${{ secrets.SERVER_PORT || 22 }}" "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}" "cd ISTE-501 && git pull origin main"
+          ssh -i ~/.ssh/id_rsa -p " "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}" "cd ISTE-501 && git pull origin main"
           
       - name: Clean up SSH key
         run: rm -f ~/.ssh/id_rsa
