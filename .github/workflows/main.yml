@@ -1,0 +1,28 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # Or your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH and Git Pull
+        uses: appleboy/ghaction-ssh@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Or password if absolutely necessary (less secure)
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            cd /path/to/your/repo  # Replace with the actual path
+            git pull origin main  # Or your branch name
+            # Add any other deployment commands here
+            # Example:
+            # sudo systemctl restart your_service_name
