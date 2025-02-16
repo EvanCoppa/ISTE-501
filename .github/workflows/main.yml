@@ -33,7 +33,7 @@ jobs:
                 '-p', SERVER_PORT,
                 '-i', 'id_rsa',
                 `${SERVER_USERNAME}@${SERVER_IP}`,
-                `cd /path/to/your/repo && git pull origin main`, // Replace with your path and branch
+                `cd ISTE-501 && git pull origin main`, // Replace with your path and branch
               ]);
             } finally {
               fs.unlinkSync('id_rsa'); // Clean up the temporary key file
