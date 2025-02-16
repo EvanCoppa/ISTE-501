@@ -1,4 +1,4 @@
-name: Deploy to Server
+name: Deploy and Update Server
 
 on:
   push:
@@ -10,32 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code from GitHub Repository
         uses: actions/checkout@v3
 
-      - name: SSH and Git Pull
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const SSH_PRIVATE_KEY = '${{ secrets.SSH_PRIVATE_KEY }}';
-            const SERVER_IP = '${{ secrets.SERVER_IP }}';
-            const SERVER_USERNAME = '${{ secrets.SERVER_USERNAME }}';
-            const SERVER_PORT = '${{ secrets.SERVER_PORT || 22 }}'; // Default to 22 if not set
+      - name: Set up SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SERVER_IP }}" >> ~/.ssh/known_hosts
 
-            // Create a temporary SSH key file
-            const fs = require('fs');
-            fs.writeFileSync('id_rsa', SSH_PRIVATE_KEY + '\n');
-            fs.chmodSync('id_rsa', '600'); // Set correct permissions
-
-            // SSH and Git Pull
-            try {
-              await exec.exec('ssh', [
-                '-p', SERVER_PORT,
-                '-i', 'id_rsa',
-                `${SERVER_USERNAME}@${SERVER_IP}`,
-                `cd ISTE-501 && git pull origin main`, // Replace with your path and branch
-              ]);
-            } finally {
-              fs.unlinkSync('id_rsa'); // Clean up the temporary key file
-            }
-         
+      - name: SSH into Server and Pull Latest Changes
+        run: |
+          ssh -i ~/.ssh/id_rsa -p "${{ secrets.SERVER_PORT || 22 }}" "${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}" "cd ISTE-501 && git pull origin main"
+          
+      - name: Clean up SSH key
+        run: rm -f ~/.ssh/id_rsa
