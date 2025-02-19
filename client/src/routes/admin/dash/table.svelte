@@ -1,24 +1,22 @@
 <script>
-    let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-</script>
+let {type} = $props()
+ let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let array2 = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19,12];
+let array = $derived(type === 'clients' ? array1 : array2);
 
-<div class="flec flex-col ">
+  // console.log(`Selected tab changed to: ${type}`);
+  </script>
 
-<h2>Table</h2>
-<!--
-  Heads up! 👋
+<div class="flex flex-col ">
 
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
--->
-
-<div class="overflow-x-auto">
+<div class="overflow-x-auto border-1 border-gray-100 rounded-md">
     <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-      <thead class="ltr:text-left rtl:text-right">
+      <thead class="ltr:text-left rtl:text-right bg-gray-100">
         <tr>
-          <th class="sticky inset-y-0 start-0 bg-white px-4 py-2">
+          <th class="sticky inset-y-0 start-0  px-4 py-4 ">
             <label for="SelectAll" class="sr-only">Select All</label>
   
-            <input type="checkbox" id="SelectAll" class="size-5 rounded-sm border-gray-300" />
+            <input type="checkbox" id="SelectAll" class="size-5 rounded-sm border-gray-300" /> 
           </th>
           <th class="px-4 py-2 font-medium whitespace-nowrap text-gray-900">Name</th>
           <th class="px-4 py-2 font-medium whitespace-nowrap text-gray-900">Date of Birth</th>
@@ -28,42 +26,27 @@
       </thead>
   
       <tbody class="divide-y divide-gray-200">
+        {#each array as item}
         <tr>
-          <td class="sticky inset-y-0 start-0 bg-white px-4 py-2">
+          <td class="sticky inset-y-0 start-0 bg-white px-4 py-4">
             <label class="sr-only" for="Row1">Row 1</label>
   
             <input class="size-5 rounded-sm border-gray-300" type="checkbox" id="Row1" />
           </td>
           <td class="px-4 py-2 font-medium whitespace-nowrap text-gray-900">John Doe</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">24/05/1995</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">Web Developer</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">$120,000</td>
+          <td class="px-4 py-2 whitespace-nowrap text-gray-700">12/05/1995</td>
+          <td class="px-4 py-2 whitespace-nowrap text-gray-700">Developer</td>
+          <td class="px-4 py-2 whitespace-nowrap text-gray-700">$50,000</td>
         </tr>
-  
+        {/each}
+
         <tr>
-          <td class="sticky inset-y-0 start-0 bg-white px-4 py-2">
-            <label class="sr-only" for="Row2">Row 2</label>
-  
-            <input class="size-5 rounded-sm border-gray-300" type="checkbox" id="Row2" />
-          </td>
-          <td class="px-4 py-2 font-medium whitespace-nowrap text-gray-900">Jane Doe</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">04/11/1980</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">Web Designer</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">$100,000</td>
-        </tr>
-  
-        <tr>
-          <td class="sticky inset-y-0 start-0 bg-white px-4 py-2">
-            <label class="sr-only" for="Row3">Row 3</label>
-  
-            <input class="size-5 rounded-sm border-gray-300" type="checkbox" id="Row3" />
-          </td>
-          <td class="px-4 py-2 font-medium whitespace-nowrap text-gray-900">Gary Barlow</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">24/05/1995</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">Singer</td>
-          <td class="px-4 py-2 whitespace-nowrap text-gray-700">$20,000</td>
+          <td class="px-4 py-2 whitespace-nowrap text-gray-500">Total: <span class="font-bold text-black">{array.length}</span></td>
+
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+
