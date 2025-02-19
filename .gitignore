@@ -8,6 +8,9 @@ node_modules
 .vercel
 .output
 .github/workflows/main.yml
+client/.DS_Store
+
+
 client/.svelte-kit/
 
 client/node_modules/
