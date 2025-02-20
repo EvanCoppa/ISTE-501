@@ -41,6 +41,6 @@ app.get('/', (req, res) => {
     res.send('Hello, welcome to DriveKind!');
 });
 
-app.use('/drivers', driversRoutes);
+app.use('/driver', driversRoutes);
 app.use('/clients', clientsRoutes);
-app.use('/trips', tripsRoutes);
+app.use('/trip', tripsRoutes);
