@@ -14,7 +14,7 @@
         <div class="translate-y-[4px] flex flex-row">
 
         <button type="button" class="flex flex-row" onclick="{() => selectedTab = 'clients'}" aria-label="Select Clients Tab">
-            <div class="flex flex-row px-4 pb-4 pt-2 border-b-4 {selectedTab === 'clients' ? 'border-black' : 'border-gray-300'} text-center">
+            <div class="flex flex-row px-4 pb-4 pt-2 border-b-4 transistion duration-200 {selectedTab === 'clients' ? 'border-black' : 'border-gray-300'} text-center">
             <h3 class="mx-auto">Clients</h3>
             </div>
         </button>
