@@ -1,6 +1,6 @@
 <script>
     import Table from './table.svelte';
-    let selectedTab = 'clients';
+    let selectedTab = 'que';
   </script>
 
 <div class="mx-48 my-12">
@@ -12,7 +12,11 @@
     
     <div class="flex flex-row border-b-4 border-gray-300">
         <div class="translate-y-[4px] flex flex-row">
-
+            <button type="button" class="flex flex-row" onclick="{() => selectedTab = 'que'}" aria-label="Select Drivers Tab">
+                <div class="flex flex-row px-4 pb-4 pt-2 border-b-4 {selectedTab === 'que' ? 'border-black' : 'border-gray-300'} text-center">
+                    <h3 class="mx-auto">Que</h3>
+                </div>
+            </button>
         <button type="button" class="flex flex-row" onclick="{() => selectedTab = 'clients'}" aria-label="Select Clients Tab">
             <div class="flex flex-row px-4 pb-4 pt-2 border-b-4 transistion duration-200 {selectedTab === 'clients' ? 'border-black' : 'border-gray-300'} text-center">
             <h3 class="mx-auto">Clients</h3>
@@ -24,6 +28,7 @@
                 <h3 class="mx-auto">Drivers</h3>
             </div>
         </button>
+        
     </div>
 
     <div class="flex flex-row justify-between gap-2 ml-auto">
