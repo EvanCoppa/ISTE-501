@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const driversRoutes = require('./routes/drivers');
+const driversRoutes = require('./routes/driver');
 const clientsRoutes = require('./routes/clients');
-const tripsRoutes = require('./routes/trips');
+const tripsRoutes = require('./routes/trip');
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 
